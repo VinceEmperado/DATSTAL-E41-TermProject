@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+// [REMOVED] 4 unused imports: java.util ArrayList, HashMap, List, Map
+// (the handout says to write the data structures yourselves)
 
 /**
  * Graph.java
@@ -13,7 +11,8 @@ public class Graph {
     private int[] degree = new int[10];
     private int roads = 0;
 
-    // Adds a place if it is not part of the graph yet. Returns the vertex number.
+    // Adds a place if it is not part of the graph yet.
+    // Returns the vertex number.
     public int addPlace(String name) {
         int vertex = places.indexOf(name);
         if (vertex != -1) {
@@ -96,7 +95,8 @@ public class Graph {
     }
 
     public int getDegree(int v) {
-        if (v < 0 || v == places.size()) {
+        // [CHANGED] was: v == places.size()  (missed values above size)
+        if (v < 0 || v >= places.size()) {
             return 0;
         }
         return degree[v];
@@ -107,7 +107,8 @@ public class Graph {
     }
 
     public void printGraph() {
-        System.out.println("Places: " + placeCount() + "    Roads: " + roadCount());
+        System.out.println("Places: " + placeCount()
+                + "    Roads: " + roadCount());
         System.out.println();
         for (int i = 0; i < placeCount(); i++) {
             StringBuilder sb = new StringBuilder();
@@ -120,5 +121,56 @@ public class Graph {
             System.out.println(getName(i).replace('_', ' ')
                     + " (" + degree[i] + "): " + sb);
         }
+    }
+
+    public String[] sortedNames() {
+        return places.sortedCopy();
+    }
+
+    // start and end are vertex numbers. Returns the path as vertex
+    // numbers (start first), or null if there is no path.
+    public int[] findPath(int start, int end) {
+        int n = placeCount();
+        boolean[] visited = new boolean[n];
+        int[] parent = new int[n];      // where we came from, -1 = none
+        for (int i = 0; i < n; i++) {
+            parent[i] = -1;
+        }
+
+        IntQueue queue = new IntQueue(n);
+        visited[start] = true;
+        queue.enqueue(start);
+
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
+            if (v == end) {
+                break;
+            }
+            for (int i = 0; i < getDegree(v); i++) {
+                int w = getNeighbor(v, i);
+                if (!visited[w]) {
+                    visited[w] = true;
+                    parent[w] = v;
+                    queue.enqueue(w);
+                }
+            }
+        }
+
+        if (!visited[end]) {
+            return null;   // no path
+        }
+
+        // Walk back from end to start using parent, then fill the path.
+        int length = 0;
+        for (int v = end; v != -1; v = parent[v]) {
+            length++;
+        }
+        int[] path = new int[length];
+        int v = end;
+        for (int i = length - 1; i >= 0; i--) {
+            path[i] = v;
+            v = parent[v];
+        }
+        return path;
     }
 }
