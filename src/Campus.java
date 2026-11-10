@@ -8,6 +8,7 @@ import java.io.IOException;
  */
 
 public class Campus {
+    static Graph graph = new Graph();
 
     public static void load(String filename, Graph graph) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -35,22 +36,8 @@ public class Campus {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        String filename = args.length > 0 ? args[0] : "src/map.txt";
-        Graph graph = new Graph();
-
-        try {
-            load(filename, graph);
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: file " + filename + " not found.");
-            return;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error in map file: " + e.getMessage());
-            return;
-        } catch (IOException e) {
-            System.out.println("Error in reading file: " + e.getMessage());
-            return;
-        }
+    public static void main() throws IOException {
+        String filename = "src/map.txt";
 
         graph.printGraph();
     }
