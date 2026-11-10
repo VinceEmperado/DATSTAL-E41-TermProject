@@ -28,7 +28,6 @@ public class Campus {
                             + "Place1 Place2");
                 }
                 if (parts[0].equalsIgnoreCase(parts[1])) {
-                    // [CHANGED] wrapped to fit 80 columns (same message)
                     throw new IllegalArgumentException("Road can not connect "
                             + "to itself. Error at line " + lineNumber + ".");
                 }

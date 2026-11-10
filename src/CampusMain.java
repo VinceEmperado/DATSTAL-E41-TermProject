@@ -6,7 +6,7 @@ public class CampusMain {
     static Scanner scanner = new  Scanner(System.in);
 
     // [ADDED] default map file for menu choice 1
-    static final String DEFAULT_FILE = "src/campus.txt";
+    static final String DEFAULT_FILE = "src/map.txt";
 
     // [ADDED] reads one line, or returns "" if the input has ended
     public static String readLine() {
