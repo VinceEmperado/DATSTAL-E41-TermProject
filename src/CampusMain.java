@@ -5,8 +5,28 @@ import java.util.Scanner;
 public class CampusMain {
     static Scanner scanner = new  Scanner(System.in);
 
+    // [ADDED] default map file for menu choice 1
+    static final String DEFAULT_FILE = "src/campus.txt";
+
+    // [ADDED] reads one line, or returns "" if the input has ended
+    public static String readLine() {
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine().trim();
+        }
+        return "";
+    }
+
     public static int readInt(Scanner scanner) {
-        return Integer.parseInt(scanner.nextLine().trim());
+        // [CHANGED] was: return Integer.parseInt(scanner.nextLine().trim());
+        // That crashed on non-numbers and when the input ended.
+        if (!scanner.hasNextLine()) {
+            return 4;       // [ADDED] input ended: quit
+        }
+        try {
+            return Integer.parseInt(scanner.nextLine().trim());
+        } catch (NumberFormatException e) {
+            return -1;      // [ADDED] not a number: handled by default case
+        }
     }
 
     public void mainLoop() throws IOException {
