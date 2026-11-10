@@ -99,6 +99,56 @@ public class CampusMain {
         }
     }
 
+    // ===== [ADDED] menu choice 3: find a path (BFS) =====
+    private static void findPath() {
+        Graph graph = Campus.graph;
+        if (graph.placeCount() == 0) {
+            System.out.println("Load the map first (choice 1).");
+            return;
+        }
+
+        System.out.print("From: ");
+        // spaces are accepted too: "Henry Sy Hall" = Henry_Sy_Hall
+        String from = readLine().replace(' ', '_');
+        int start = graph.indexOf(from);
+        if (start == -1) {
+            System.out.println("Place not found: " + from);
+            return;
+        }
+
+        System.out.print("To: ");
+        String to = readLine().replace(' ', '_');
+        int end = graph.indexOf(to);
+        if (end == -1) {
+            System.out.println("Place not found: " + to);
+            return;
+        }
+
+        if (start == end) {
+            System.out.println("You are already at "
+                    + graph.getName(start).replace('_', ' ') + ".");
+            return;
+        }
+
+        int[] path = graph.findPath(start, end);
+        if (path == null) {
+            System.out.println("No path between "
+                    + graph.getName(start).replace('_', ' ') + " and "
+                    + graph.getName(end).replace('_', ' ') + ".");
+            return;
+        }
+
+        System.out.print("Path: ");
+        for (int i = 0; i < path.length; i++) {
+            if (i > 0) {
+                System.out.print(" -> ");
+            }
+            System.out.print(graph.getName(path[i]).replace('_', ' '));
+        }
+        System.out.println();
+        System.out.println("Number of stops: " + (path.length - 1));
+    }
+
     public static void main(String[] args) throws IOException {
         CampusMain main = new CampusMain();
         main.mainLoop();
