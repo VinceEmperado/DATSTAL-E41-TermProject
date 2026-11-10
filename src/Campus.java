@@ -22,13 +22,20 @@ public class Campus {
                 }
                 String[] parts = line.split("\\s+");
                 if (parts.length != 2) {
-                    throw new IllegalArgumentException("Line " + lineNumber + " error: Places must be formatted as Place1 Place2");
+                    // [CHANGED] wrapped to fit 80 columns (same message)
+                    throw new IllegalArgumentException("Line " + lineNumber
+                            + " error: Places must be formatted as "
+                            + "Place1 Place2");
                 }
                 if (parts[0].equalsIgnoreCase(parts[1])) {
-                    throw new IllegalArgumentException("Road can not connect to itself. Error at line " + lineNumber + ".");
+                    // [CHANGED] wrapped to fit 80 columns (same message)
+                    throw new IllegalArgumentException("Road can not connect "
+                            + "to itself. Error at line " + lineNumber + ".");
                 }
                 if (!graph.addRoad(parts[0], parts[1])) {
-                    throw new IllegalArgumentException("Duplicate road at line " + lineNumber + ".");
+                    // [CHANGED] wrapped to fit 80 columns (same message)
+                    throw new IllegalArgumentException("Duplicate road at line "
+                            + lineNumber + ".");
                 }
             }
 
