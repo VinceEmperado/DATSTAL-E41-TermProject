@@ -2,8 +2,8 @@
  * IntQueue.java
  * A circular array queue of ints, used by BFS to hold vertex numbers.
  * Vertex numbers are never negative, so -1 is used to mean "empty".
- * Written by: Nash Breann C. Paragas
  */
+
 public class IntQueue {
     private int[] items;   // storage for the queue
     private int front;     // index of the next item to remove
