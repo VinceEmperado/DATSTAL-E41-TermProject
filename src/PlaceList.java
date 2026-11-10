@@ -65,4 +65,23 @@ public class PlaceList {
         }
         return -1;
     }
+
+    // Returns a sorted COPY, so the vertex numbers of the places in this
+    // list do not change.
+    public String[] sortedCopy() {
+        String[] copy = new String[size];
+        for (int i = 0; i < size; i++) {
+            copy[i] = places[i];
+        }
+        for (int i = 1; i < size; i++) {
+            String key = copy[i];
+            int j = i - 1;
+            while (j >= 0 && copy[j].compareToIgnoreCase(key) > 0) {
+                copy[j + 1] = copy[j];
+                j--;
+            }
+            copy[j + 1] = key;
+        }
+        return copy;
+    }
 }
