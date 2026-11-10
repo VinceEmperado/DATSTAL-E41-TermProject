@@ -99,6 +99,18 @@ public class CampusMain {
         }
     }
 
+    private static void showPlaces() {
+        if (Campus.graph.placeCount() == 0) {
+            System.out.println("Load the map first (choice 1).");
+            return;
+        }
+        String[] sorted = Campus.graph.sortedNames();
+        System.out.println("Places (A to Z):");
+        for (int i = 0; i < sorted.length; i++) {
+            System.out.println("  " + sorted[i].replace('_', ' '));
+        }
+    }
+
     // ===== [ADDED] menu choice 3: find a path (BFS) =====
     private static void findPath() {
         Graph graph = Campus.graph;
