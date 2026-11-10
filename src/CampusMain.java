@@ -29,13 +29,13 @@ public class CampusMain {
                         Campus.load(filename, Campus.graph);
                     } catch (FileNotFoundException e) {
                         System.out.println("Error: file " + filename + " not found.");
-                        return;
+                        break;
                     } catch (IllegalArgumentException e) {
                         System.out.println("Error in map file: " + e.getMessage());
-                        return;
+                        break;
                     } catch (IOException e) {
                         System.out.println("Error in reading file: " + e.getMessage());
-                        return;
+                        break;
                     }
                     System.out.println("Load complete.");
                     break;
