@@ -33,40 +33,68 @@ public class CampusMain {
         boolean running = true;
 
         while (running) {
-            System.out.println("============================= CAMPUS MAP CHECKER ============================");
+            System.out.println("============================="
+                    + " CAMPUS MAP CHECKER ============================");
             System.out.println("1. Load the map file");
-            System.out.println("2. Show all places"); // NOTE: Sort this to A-Z order pa
+            // NOTE: Sort this to A-Z order pa
+            System.out.println("2. Show all places");
             System.out.println("3. Find path between two places");
             System.out.println("4. Quit");
-            System.out.println("=============================================================================");
+            System.out.println("======================================"
+                    + "=======================================");
             System.out.print("Enter your choice: ");
             int choice = readInt(scanner);
             switch (choice) {
                 case 1:
                     System.out.println();
-                    String filename = "src/map.txt";
+                    // [CHANGED] was: String filename = "src/map.txt";
+                    // Now it asks for the file name (Enter = default file).
+                    System.out.print("Map file (Enter for "
+                            + DEFAULT_FILE + "): ");
+                    String filename = readLine();
+                    if (filename.isEmpty()) {
+                        filename = DEFAULT_FILE;
+                    }
+                    // [ADDED] load into a fresh graph, so loading twice works
+                    Graph fresh = new Graph();
                     try {
-                        Campus.load(filename, Campus.graph);
+                        // [CHANGED] was: Campus.load(filename, Campus.graph);
+                        Campus.load(filename, fresh);
+                        // [ADDED] keep the new graph only if the load worked
+                        Campus.graph = fresh;
                     } catch (FileNotFoundException e) {
-                        System.out.println("Error: file " + filename + " not found.");
+                        System.out.println("Error: file " + filename
+                                + " not found.");
+                        // [CHANGED] was: return;  (it closed the program)
                         break;
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Error in map file: " + e.getMessage());
+                        System.out.println("Error in map file: "
+                                + e.getMessage());
+                        // [CHANGED] was: return;  (it closed the program)
                         break;
                     } catch (IOException e) {
-                        System.out.println("Error in reading file: " + e.getMessage());
+                        System.out.println("Error in reading file: "
+                                + e.getMessage());
+                        // [CHANGED] was: return;  (it closed the program)
                         break;
                     }
                     System.out.println("Load complete.");
                     break;
                 case 2:
                     System.out.println();
-                    Campus.main();
+                    // [CHANGED] was: Campus.main();  (it printed the graph)
+                    showPlaces();
                     break;
                 case 3:
-                    // TO DO
+                    // [CHANGED] was: // TO DO  (with no break, so it fell
+                    // into case 4 and closed the program)
+                    findPath();
+                    break;
                 case 4:
                     running = false;
+                    break;      // [ADDED]
+                default:        // [ADDED] bad menu input
+                    System.out.println("Please enter 1, 2, 3 or 4.");
             }
         }
     }
