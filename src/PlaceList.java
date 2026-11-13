@@ -1,7 +1,6 @@
 /**
  * PlaceList.java
  * Stores the names of campus places in a growable array.
- * Written by: Nash Breann C. Paragas
  */
 
 public class PlaceList {
