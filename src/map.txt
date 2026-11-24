@@ -6,9 +6,11 @@ La_Salle_Hall Taft_Gate
 Andrew_Gonzales_Hall Velasco_Hall
 Andrew_Gonzales_Hall Razon_Sports_Center
 Velasco_Hall Yuchengco_Hall
-Yuchengco_Hall Gokongwei_Hall
+Gokongwei_Hall St_Miguel_Hall
+St_Miguel_Hall Velasco_Hall
 Gokongwei_Hall Razon_Sports_Center
 Gokongwei_Hall Agno_Gate
+Agno_Gate Velasco_Hall
 Razon_Sports_Center Agno_Gate
 Taft_Gate Taft_Avenue_LRT
 Taft_Gate Agno_Gate
