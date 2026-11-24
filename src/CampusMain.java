@@ -58,10 +58,13 @@ public class CampusMain {
                     // [ADDED] load into a fresh graph, so loading twice works
                     Graph fresh = new Graph();
                     try {
+                        System.out.println("Reading map file: " + filename + "...");
                         // [CHANGED] was: Campus.load(filename, Campus.graph);
                         Campus.load(filename, fresh);
                         // [ADDED] keep the new graph only if the load worked
                         Campus.graph = fresh;
+A
+                        System.out.println("Map file successfully read.");
                     } catch (FileNotFoundException e) {
                         System.out.println("Error: file " + filename
                                 + " not found.");
