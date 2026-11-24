@@ -69,6 +69,7 @@ public class CampusMain {
 
                         System.out.println("Map file successfully read.");
                         System.out.println("Graph successfully built.");
+
                     } catch (FileNotFoundException e) {
                         System.out.println("Error: file " + filename
                                 + " not found.");
@@ -85,7 +86,25 @@ public class CampusMain {
                         // [CHANGED] was: return;  (it closed the program)
                         break;
                     }
+
+                    //Show Graph (can be removed if not needed to show the graph)
+
                     System.out.println("Load complete.");
+
+                    System.out.println();
+                    System.out.println("============================="
+                            + " CAMPUS GRAPH ============================");
+
+                    Campus.graph.printGraph();
+
+                    System.out.println("======================================"
+                            + "=======================================");
+                    System.out.println();
+
+                    break;
+
+                    //Original Use: Delete Show Graph and uncomment to go back to not showing Graph
+                    //System.out.println("Load complete.");
                     break;
                 case 2:
                     System.out.println();
