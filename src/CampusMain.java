@@ -105,7 +105,7 @@ public class CampusMain {
 
                     //Original Use: Delete Show Graph and uncomment to go back to not showing Graph
                     //System.out.println("Load complete.");
-                    break;
+                    //break;
                 case 2:
                     System.out.println();
                     // [CHANGED] was: Campus.main();  (it printed the graph)
